@@ -1,0 +1,1 @@
+# projetoParadigmasClojure2025-2
