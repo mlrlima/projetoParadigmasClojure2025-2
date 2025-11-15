@@ -1,7 +1,5 @@
 (ns projeto.utils)
 
-(ns projeto.utils)
-
 ;;funcoes & variaveis:
 ;;
 ;vermelho
@@ -13,6 +11,12 @@
 ;limparTerminal []
 ;;
 ;digite0ParaVoltar []
+;;
+;isDouble? [n]
+;verificarInputDouble []
+;;
+;isInt? [n]
+;verificarInputInt []
 
 (def vermelho "\u001b[31m")
 (def verde "\u001b[32m")
@@ -34,3 +38,30 @@
       (cond
         (= userinput "0") ()
         :else (recur)))))
+
+;verificar se um input eh double
+(defn isDouble? [n]
+  (try (Double/parseDouble n) true
+       (catch Exception _ false)))
+(defn verificarInputDouble []
+  (loop []
+    (flush)
+    (let [userInput (read-line)]
+      (if (isDouble? userInput) (Double/parseDouble userInput)
+          (do
+            (print vermelho "\nDigite um numero valido.\n" reset)
+            (recur))))))
+
+
+;verificar se um input eh inteiro
+(defn isInt? [n]
+  (try (Integer/parseInt n) true
+       (catch Exception _ false)))
+(defn verificarInputInt []
+  (loop []
+    (flush)
+    (let [userInput (read-line)]
+      (if (isInt? userInput) (Integer/parseInt userInput)
+          (do
+            (print vermelho "\nDigite um numero valido." reset)
+            (recur))))))
